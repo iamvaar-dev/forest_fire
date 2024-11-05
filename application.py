@@ -16,7 +16,11 @@ standard_scaler=pickle.load(open('models/scaler.pkl','rb'))
 def index():
     return render_template('index.html')
 
-@app.route('/predictdata',methods=['GET','POST'])
+@app.route('/predict')
+def predict():
+    return render_template('home.html')
+
+@app.route('/predict_datapoint',methods=['GET','POST'])
 def predict_datapoint():
     if request.method=='POST':
         Temperature=float(request.form.get('Temperature'))
@@ -37,6 +41,5 @@ def predict_datapoint():
     else:
         return render_template('home.html')
 
-
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
